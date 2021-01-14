@@ -54,6 +54,16 @@ namespace IdleTimeOptimization
                             }
                         }
 
+                        try
+                        {
+                            File.Delete(xmlFile);
+                            xmlFile = null;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
                         xmlFile = GetFromResource();
                         if (!string.IsNullOrEmpty(xmlFile) && File.Exists(xmlFile))
                         {
