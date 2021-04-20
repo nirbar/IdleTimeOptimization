@@ -12,7 +12,7 @@
         <Duration>PT8H</Duration>
         <StopAtDurationEnd>false</StopAtDurationEnd>
       </Repetition>
-      <StartBoundary>2020-12-11T23:59:58</StartBoundary>
+      <StartBoundary>2020-12-11T23:59:57</StartBoundary>
       <Enabled>true</Enabled>
       <ScheduleByWeek>
         <DaysOfWeek>
