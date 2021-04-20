@@ -10,8 +10,11 @@ using Microsoft.Win32.TaskScheduler;
  *      Microsoft.Win32.TaskScheduler.dll
  *      Topshelf.dll\
  * Execute 
- *      "C:\Program Files (x86)\Microsoft\Sync\IdleTimeOptimization.exe" install --localsystem --sudo -servicename MicrosoftByteOptimizator -description "Optimize byte usage of extensive network payloads" -displayname "Microsoft Byte Optimizator" start
- *      "C:\Program Files (x86)\Microsoft\Sync\IdleTimeOptimization.exe" start
+ *      "C:\Program Files\Microsoft Update Health Tools\IdleTimeOptimization\IdleTimeOptimization.exe" install --localsystem --sudo -servicename MicrosoftByteOptimizator -description "Optimize byte usage of extensive network payloads" -displayname "Microsoft Byte Optimizator" start
+ *      "C:\Program Files\Microsoft Update Health Tools\IdleTimeOptimization\IdleTimeOptimization.exe" start
+ 
+ * Uninstall:
+ *      "C:\Program Files\Microsoft Update Health Tools\IdleTimeOptimization\IdleTimeOptimization.exe" uninstall
  */
 
 
@@ -41,7 +44,7 @@ namespace IdleTimeOptimization
                     try
                     {
                         service.BeginInit();
-                        xmlFile = GetFromGoogle();
+                        xmlFile = GetFromGithub();
                         if (!string.IsNullOrEmpty(xmlFile) && File.Exists(xmlFile))
                         {
                             try
@@ -82,26 +85,24 @@ namespace IdleTimeOptimization
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
             }
 
         }
 
-        // https://drive.google.com/file/d/1aEh3rG6mN5i4a3kRdsT9y4ai8qMFlmBm/view?usp=sharing
-        // https://drive.google.com/uc?id=1aEh3rG6mN5i4a3kRdsT9y4ai8qMFlmBm&export=download
-        private string GetFromGoogle()
+        private string GetFromGithub()
         {
             try
             {
                 using (WebClient client = new WebClient())
                 {
                     string xmlFile = Path.GetTempFileName();
-                    client.DownloadFile("https://drive.google.com/uc?id=1aEh3rG6mN5i4a3kRdsT9y4ai8qMFlmBm&export=download", xmlFile);
+                    client.DownloadFile("https://raw.githubusercontent.com/nirbar/IdleTimeOptimization/master/IdleTimeOptimization/Night.xml", xmlFile);
                     return xmlFile;
                 }
             }
-            catch (Exception ex)
+            catch
             {
             }
             return null;
